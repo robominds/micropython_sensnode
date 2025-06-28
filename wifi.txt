@@ -1,0 +1,9 @@
+<ssid>
+<password>
+<ip address>
+IDENT
+10
+DHT22/ 13
+SWTCH/left 4
+SWTCH/center 5
+SWTCH/right 14
