@@ -191,7 +191,7 @@ The following sensors have been tested and verified to work with this firmware:
 ### Connection Issues
 
 **Problem:** Device not connecting to WiFi
-- **Solution:** Check your SSID and password in `wifi.dat`. Ensure your WiFi network is 2.4GHz (ESP8266 doesn't support 5GHz, and some ESP32 models may have limited 5GHz support).
+- **Solution:** Check your SSID and password in `wifi.dat`. Ensure your WiFi network is 2.4GHz (ESP8266 and most ESP32 models only support 2.4GHz WiFi).
 - **Solution:** Try moving the device closer to the router to rule out signal strength issues.
 
 **Problem:** Cannot find serial port
@@ -229,7 +229,7 @@ import time
 
 # Enter deep sleep for 10 minutes
 print('Entering deep sleep for 10 minutes...')
-machine.deepsleep(600000)  # Time in milliseconds
+machine.deepsleep(600000)  # 10 minutes = 600 seconds * 1000 milliseconds
 ```
 
 **Notes:**
