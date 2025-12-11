@@ -32,7 +32,7 @@ This repository contains MicroPython code and documentation for small sensor nod
 
 - Minimal MicroPython firmware examples for ESP32 and ESP8266
 - Example sensor drivers and data publishing to MQTT
-- Simple configuration via wifi.dat file
+- Simple configuration via wifi.dat file (created from wifi.txt template)
 - Flashing and REPL usage notes
 
 ## Supported Hardware
@@ -191,7 +191,7 @@ The following sensors have been tested and verified to work with this firmware:
 ### Connection Issues
 
 **Problem:** Device not connecting to WiFi
-- **Solution:** Check your SSID and password in `wifi.dat`. Ensure your WiFi network is 2.4GHz (ESP8266/ESP32 don't support 5GHz).
+- **Solution:** Check your SSID and password in `wifi.dat`. Ensure your WiFi network is 2.4GHz (ESP8266 doesn't support 5GHz, and some ESP32 models may have limited 5GHz support).
 - **Solution:** Try moving the device closer to the router to rule out signal strength issues.
 
 **Problem:** Cannot find serial port
@@ -227,8 +227,8 @@ import time
 # Read sensor and publish to MQTT
 # ... your code here ...
 
-# Enter deep sleep for 10 minutes (600 seconds)
-print('Entering deep sleep for 600 seconds...')
+# Enter deep sleep for 10 minutes
+print('Entering deep sleep for 10 minutes...')
 machine.deepsleep(600000)  # Time in milliseconds
 ```
 
@@ -268,7 +268,7 @@ client = MQTTClient("sensor-node-1", "mqtt.example.com", port=8883, ssl=True)
 Contributions are welcome! Please follow these guidelines:
 
 ### Code Style
-- Follow [PEP 8](https://pep8.org/) style guidelines for Python code where applicable
+- Follow [PEP 8](https://peps.python.org/pep-0008/) style guidelines for Python code where applicable
 - Use 4 spaces for indentation (not tabs)
 - Keep functions focused and single-purpose
 - Add docstrings for non-trivial functions
