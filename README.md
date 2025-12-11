@@ -32,7 +32,7 @@ This repository contains MicroPython code and documentation for small sensor nod
 
 - Minimal MicroPython firmware examples for ESP32 and ESP8266
 - Example sensor drivers and data publishing to MQTT
-- Simple configuration via secrets.py or config.py
+- Simple configuration via wifi.dat file
 - Flashing and REPL usage notes
 
 ## Supported Hardware
@@ -53,7 +53,7 @@ This repository contains MicroPython code and documentation for small sensor nod
 - **umqttsimple.py** - Simple MQTT client implementation
 - **WDT.py** - Watchdog timer implementation
 - **rfswitch.py** - RF switch control module
-- **wifi.txt** - WiFi and MQTT configuration file template
+- **wifi.txt** - Template for WiFi and MQTT configuration (rename to wifi.dat when deploying)
 - **upload.bat** - Windows batch script for uploading files
 
 ## Quick Start
