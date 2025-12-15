@@ -8,6 +8,7 @@ ampy -p %1 put mqtt_switch.py
 ampy -p %1 put WDT.py
 ampy -p %1 put bme280.py
 ampy -p %1 put mqtt_bme280.py
+ampy -p %1 put gc9a01.py
 ampy -p %1 put gc9a01c.py
 ampy -p %1 put test_display.py
 
