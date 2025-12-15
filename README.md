@@ -36,6 +36,32 @@ This project provides a complete MicroPython-based sensor node system that can r
 - **Error handling**: Graceful fallback when display updates fail
 - **SPI interface**: High-speed communication (40MHz baudrate)
 
+### GC9A01 (round 240x240) wiring
+Use the new lightweight driver in `gc9a01.py` when you want a minimal interface:
+
+| Signal | ESP32 pin (default) | Notes              |
+|--------|---------------------|--------------------|
+| VCC    | 3V3                 | Power              |
+| GND    | GND                 | Ground             |
+| SCK    | GPIO 18             | SPI clock          |
+| MOSI   | GPIO 23             | SPI MOSI           |
+| CS     | GPIO 15             | Chip select        |
+| DC     | GPIO 5              | Data/command       |
+| RST    | GPIO 0              | Reset              |
+| BL     | GPIO 2              | Backlight (optional)|
+
+Minimal usage example:
+
+```python
+from machine import SPI, Pin
+from gc9a01 import GC9A01
+
+spi = SPI(1, baudrate=40_000_000, polarity=1, phase=1, sck=Pin(18), mosi=Pin(23))
+disp = GC9A01(spi, cs=15, dc=5, rst=0, bl=2)
+disp.text("Hello", 60, 120, 0xFFFF)
+disp.show()
+```
+
 ### Pin Configuration
 Default pin assignments (configurable in code):
 ```
