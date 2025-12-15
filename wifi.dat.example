@@ -1,0 +1,6 @@
+your_wifi_ssid
+your_wifi_password
+your_mqtt_server_ip
+your_node_name
+30
+dht22 4

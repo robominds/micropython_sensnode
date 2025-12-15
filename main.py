@@ -9,6 +9,8 @@ import network
 import esp
 from machine import Pin
 import dht
+from gc9a01c import GC9A01C
+from machine import SPI
 #esp.osdebug(None)
 import gc
 #from machine import WDT
@@ -39,8 +41,25 @@ def restart_and_reconnect(msg: str):
   machine.reset()
 
 time.sleep(3)
+# Initialize SPI interface and display
+display_spi = SPI(1, baudrate=40000000, polarity=1, phase=1)
+display = GC9A01C(display_spi, cs=15, dc=5, rst=0, bl=2)
+display.set_backlight(1)  # Turn on backlight
+
+def read_and_display_dht():
+    try:
+        sensor = dht.DHT11(machine.Pin(4))  # Use actual GPIO pin
+        sensor.measure()
+        temp = sensor.temperature()
+        hum = sensor.humidity()
+        display.display_sensor_data(temp, hum)
+        time.sleep(1)
+    except Exception as e:
+        print("DHT read error:", e)
+
 try:
     print('reset cause:', machine.reset_cause())
+    read_and_display_dht()
     wdtDebug = 0
 
     print("Reading wifi.dat")
@@ -133,6 +152,12 @@ try:
               sensors[0].fault()
             else:
               sens.disp()
+              # Update display with sensor data
+              try:
+                if hasattr(sens, 'get_tempc') and hasattr(sens, 'get_hum'):
+                  display.display_sensor_data(sens.get_tempc(), sens.get_hum())
+              except Exception as e:
+                print('Display update failed:', e)
               if sens.publish(client) < 0:
                 print('Error publising Sensor')
                 sensors[0].fault()

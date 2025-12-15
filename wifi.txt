@@ -1,6 +1,6 @@
-<ssid>
-<password>
-<ip address>
+SSID
+PASSWORD
+IP_ADDRESS
 IDENT
 10
 DHT22/ 13
